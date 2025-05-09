@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>X2C: A Benchmark Featuring Nuanced Facial Expressions
+ <br>for Realistic Humanoid Imitation</title>
+  <link rel="icon" type="image/x-icon" href="static/images/ameca_favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <!-- TODO move to css file -->
+  <style>
+    .small-sup {
+        font-size: 0.6em; /* Smaller size */
+    }
+    .institution-logo {
+            margin-top: 20px; /* top margin */
+            max-width: 175px; /* max width */
+        }
+
+    .image-container {
+        display: flex; /* Use flexbox for layout */
+        justify-content: center; /* Center images horizontally */
+        gap: 20px; /* Space between images */
+    }
+    .image-container figure {
+        text-align: center; /* Center the caption */
+    }
+
+    .image-container figcaption {
+    margin-top: 8px; /* Adds space between the image and caption */
+
+  }
+  .content {
+    max-width: 100%;    /* Set the maximum width for the caption text */
+    margin: 0 auto;    /* Center the content */
+    line-height: 1.5;  /* Improves readability */
+}
+
+    .image-container img {
+        /* width: 459px; Set fixed width */
+        /* height: 220px; Set fixed height */
+        margin-top: 15px; /* top margin */
+        flex-basis: 100%;
+        object-fit: cover; /* Maintain aspect ratio */
+    }
+
+    .single-image {
+        flex-basis: 100%; /* Take full width for the single image */
+        margin-top: 20px; /* Space above the single image */
+    }
+
+    .video-container {
+            display: flex; /* Use flexbox for layout */
+            /* justify-content: space-between; Space between videos */
+            /* margin: 20px;  Optional margin */
+        }
+    .video {
+            position: relative; /* Position for watermark */
+            width: 500px; /* Fixed width for the video */
+            margin-right: 20px; /* Right margin for spacing */
+            /* margin: 0 10px;  Optional spacing between videos */
+    }
+    
+    .video:last-child {
+        margin-right: 0; /* Remove margin for the last video */
+    }
+    
+    video {
+        width: 100%; /* Responsive width */
+        height: auto; /* Maintain aspect ratio */
+    }
+    .watermark {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        /*bottom: 10px;  Position at bottom */
+        /*right: 10px;  Position at right */
+        background: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+        padding: 5px; /* Padding for the watermark */
+        font-size: 14px; /* Font size for the watermark */
+        color: black; /* Text color */
+        /*border-radius: 5px;  Rounded corners */
+    }
+  
+</style>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">X2C: A Benchmark Featuring 
+              <br>Nuanced Facial Expressions<br> for Realistic Humanoid Imitation</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://lipzh5.github.io/" target="_blank">Peizhen Li</a><sup>*</sup>,</span>
+                <!-- <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span> -->
+                <span class="author-block">
+                  <a href="https://datasciences.org/" target="_blank">Longbing Cao</a><sup><span class="small-sup">&star;</span></sup>,</span>
+                  <span class="author-block">
+                    <a href="https://dravenalg.github.io/" target="_blank">Xiao-Ming Wu</a>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://scholar.google.com.au/citations?user=o_dJyQMAAAAJ&hl=en" target="_blank">Runze Yang</a>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://xiaohanyu-gu.github.io/" target="_blank">Xiaohan Yu</a>
+                  </span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block"><sup>*</sup>Project lead, <sup><span class="small-sup">&star;</span></sup>Advisor</span>
+                    <!-- <span class="author-block">Institution Name<br>Conferance name and year</span> -->
+                    <!-- <span class="eql-cntrb"><small><br><sup>❄️</sup>Indicates Equal Contribution</small></span> -->
+                  </br>
+                    <img src="static/images/logo-mq.png" alt="mq-logo" class="institution-logo">
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="coming_soon!!!" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                    <!-- Supplementary PDF link -->
+<!--                     <span class="link-block">
+                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Supplementary</span>
+                    </a>
+                  </span>
+ -->
+                   <!-- Github link -->
+                   <span class="link-block">
+                    <a href="https://github.com/lipzh5/Mimetician" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- Github link -->
+                <span class="link-block">
+                    <a href="https://huggingface.co/datasets/Peizhen/X2C" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-database"></i> 
+                    </span>
+                    <span>Dataset</span>
+                  </a>
+                </span>
+
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="coming_soon!!!" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video poster="" id="tree" autoplay controls muted loop height="100%">
+        <!-- Your video here -->
+        <source src="static/videos/concat_asma.mov"
+        type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <div class="content has-text-centered">
+        <div class="content has-text-justified">
+        A video demonstration to showcase the realistic imitation capabilities of our propose framework <strong>Mimetician</strong>, where the <strong>emotional nuances</strong> of the human performer are capatured and transferred to the humanoid robot.
+        </div>
+        </div>
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+        <div class="image-container">
+          <figure>
+              <img src="static/images/inference_example3_160.png" alt="distraction", class=""single-image>
+              <figcaption> 
+                <div class="content has-text-centered">
+                <div class="content has-text-justified">
+                <strong>Examples of realistic humanoid imitation.</strong> Different individuals express a wide range of facial expressions, with nuances reflected in features such as frown, gaze direction, eye openness, nose wrinkles, mouth openness, and so on. These nuanced human facial expressions extend beyond canonical emotions and can be regarded as either blends of different canonical emotions or as a single emotion with varying intensities. The humanoid robot, Ameca, mimics every detail, resulting in a realistic imitation.
+              </div>
+              </div>
+              </figcaption>
+          </figure>
+          
+        </div>
+
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We present a new benchmark along with a novel human-to-robot motion transfer baseline that enables a humanoid robot to realistically imitate nuanced facial expressions from humans. Prior work on human facial expression imitation for humanoid robots typically operates within limited emotion categories, failing to capture the subtle emotional nuances inherent in human expressions, thereby hindering realistic imitation.
+To this end, we introduce <strong>X2C</strong> (Anything to Control), the first benchmark featuring nuanced facial expressions for realistic humanoid imitation. <strong>X2C</strong>  comprises a training set and a test set. The training set consists of 104,987 images of a virtual humanoid robot in a simulation environment, each depicting nuanced facial expressions and annotated with 30 low-level control values. The test set contains nuanced human facial expressions with the same control value annotations as in the training set.
+Equipped with this benchmark, we propose <strong>Mimetician</strong>, a novel human-to-robot motion transfer baseline for realistic imitation. In this framework, a mapping network is trained using <strong>X2C</strong> to map images of the virtual robot to control values that encode emotional nuances within the robot's action space. 
+Extensive experiments are conducted both on the test set and the physical humanoid robot, with both quantitative and qualitative evaluations. For more details, please refer to our project page.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<!-- core images -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Comparison with Current Approaches</h2>
+        <div class="image-container">
+          <figure>
+              <img src="static/images/current_issue4_480.png" alt="project lead", class=""single-image>
+              <figcaption>
+                <figcaption>
+                  <div class="content has-text-centered">
+                    <div class="content has-text-justified">
+                      Existing methods typically follow a recognition and imitation paradigm, operating on a limited set of emotions and failing to capture emotional nuances. For example, the robot might always display the same happy face, even if the human performer exhibits 
+                      happiness with varying intensities.
+                      In contrast, the proposed <strong>Mimetician</strong> framework does not impose restrictions on canonical emotions and directly predicts low-level control values in the robot's action space. These control values represent the movement of actuators in the robot's face, thereby encoding subtle variations in facial expressions.
+
+                    </div>
+                    
+                  </div>
+                </figcaption>
+ 
+                </div>
+              </figcaption>
+          </figure>
+        </div>
+
+    </div>
+    
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3"><strong>X2C</strong> Rollout</h2>
+        <div class="image-container">
+          <figure>
+              <img src="static/images/physical_virtual_control4.png" alt="project lead", class=""single-image>
+              <figcaption>
+                <div class="content has-text-centered">
+                <div class="content has-text-justified">
+                    <strong>X2C training set examples demonstration.</strong> Each example in the X2C dataset consists of (1) an image depicting the <strong>virtual robot</strong>, shown in the middle, and (2) the corresponding control values, visualized at the bottom. To facilitate an understanding of the relationship between the physical and virtual robots, images of the <strong>physical robot</strong> are also included at the top.
+                    The <strong>physical robot</strong> and its <strong>virtual counterpart</strong> share the same set of controls. 
+                  </div>
+                  </div>
+              </figcaption>
+          </figure>
+        </div> 
+
+        <div class="image-container">
+          <figure>
+              <img src="static/images/testset_examples3.png" alt="project lead", style="width: 60%">
+              <figcaption>
+                <div class="content has-text-centered">
+                <div class="content has-text-justified">
+                    <strong>X2C test set examples demonstration.</strong> Each example is an image-control value pair, where the image depicting nuance facial expression of human. The control values correspond to a robotic facial expression and serve as the ground truth for the imitation task. 
+                    Note that the quantitative evaluation can be conducted on the test set even without the physical robot.
+                  </div>
+                  </div>
+              </figcaption>
+          </figure>
+        </div> 
+
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Dataset Collection </h2>
+        <div class="image-container">
+          <figure>
+              <img src="static/images/dataset_pipeline8.png" alt="project lead", class="single-image", style="width: 80%">
+              <figcaption>
+                <div class="content has-text-centered">
+                <div class="content has-text-justified">
+                  <strong>The pipeline for training set collection.</strong> A. We first construct facial expression animations and record videos in the simulation environment. 
+                  B. In the annotation module, both the control values and image frames are sampled at a timestep of 0.05 seconds, which are used to construct temporally aligned pairs.
+                  </div>
+                  </div>
+              </figcaption>
+          </figure>
+        </div> 
+
+        <div class="image-container">
+          <figure>
+              <img src="static/images/testset_construction2.png" alt="project lead", style="width: 80%">
+              <figcaption>
+                <div class="content has-text-centered">
+                <div class="content has-text-justified">
+                  <strong>The pipeline for test set collection.</strong>
+                  A. We first construct pairs of robot images and corresponding control values. B. Volunteers are then invited to replicate the robot's facial expressions precisely. C. The captured human facial images subsequently annotated with the control values associated with the robot images.
+                  </div>
+                  </div>
+              </figcaption>
+          </figure>
+        </div> 
+
+    </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Framework</h2>
+        <div class="image-container">
+          <figure>
+              <img src="static/images/imitation_framework7.png" alt="project lead", style="width: 60%">
+              <figcaption>
+                <figcaption>
+                  <div class="content has-text-centered">
+                    <div class="content has-text-justified">
+                      An overview of <strong>Mimetician</strong>, the proposed human-to-robot motion transfer framework for realistic humanoid imitation. A. During training, we learn a mapping from the 
+                      virtual robot to the control values within the robot's action space. B. During inference, the human motion is first transferred to the virtual robot, which then passes through the learned mapping network to predict control values that encode nuanced facial, driving the physical robot using these control values to imitate human facial expressions in a realistic manner.
+                    </div>
+                  </div>
+                </figcaption>
+ 
+                </div>
+              </figcaption>
+          </figure>
+        </div>
+
+    </div>
+    
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- Video carousel -->
+<!-- <section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Another Carousel</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video1">
+          <video poster="" id="video1" autoplay controls muted loop height="100%">
+          
+            <source src="static/videos/carousel1.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video2">
+          <video poster="" id="video2" autoplay controls muted loop height="100%">
+           
+            <source src="static/videos/carousel2.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">
+           
+            <source src="static/videos/carousel3.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- End video carousel -->
+
+
+
+
+
+
+<!-- Paper poster -->
+<!-- <section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title">Poster</h2>
+
+      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
+          </iframe>
+        
+      </div>
+    </div>
+  </section> -->
+<!--End paper poster -->
+
+
+
+
+
+  <!-- <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer> -->
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
