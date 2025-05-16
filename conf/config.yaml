@@ -1,0 +1,50 @@
+trial: 0
+seed: 1111
+device_id: 0
+do_eval: False
+
+
+data:
+#  clear_gaze: True
+  ictrl_data_path: ../emotionimitation/datasets
+  mean: [0.4885, 0.4294, 0.3233]
+  std: [0.1382, 0.1195, 0.1087]
+  apply_color_jitter: True
+  transform:
+    color_jitter:
+      brightness: 0.2
+      contrast: 0.2
+      saturation: 0.2
+      hue: 0.2
+    random_crop: 224
+    resize_target: 224
+
+
+train:
+  loss_fn: 2  # 1: l1 loss; 2: MSE loss (2: Huber loss) Feb 28
+  huber_delta: 0.01
+  feat_matching_ratio: 1
+  feat_matching_func_code: 1  # 0: no feature matching; 1: cosine; 2: l1 loss; 3: l2 loss
+  num_epochs: 10
+  num_workers: 16
+  batch_size: 128
+  accumulation_steps: 1
+  lr: 1e-3
+  weight_decay: 0.05
+  warm_up: 0.02 # 0.1
+  gradient_clip_value: 1
+  log_interval: 100
+  save_model_path: ../emotionimitation/saved_models
+  save_model_name: x2control.pth # runs3/trial_3_seed1111_bs32_ep100_lr0.005_neutnorm0_rnpretrain0_lossfn1_wp0.02_appcj1_preddelta0_step1-1/x2control.pth
+
+eval:
+  sep_parts: False
+  normalize: True
+  metric: l1
+  image_path: assets/vid2frames/cropped_frames_fine/Chat_G2_Surprise_Mod_3_Penny_10.15/frame_0029.jpg # assets/images/tests/test2.png
+
+model:
+  encoder_opt: 'resnet'  # 50
+  use_resnet_pretrain: True
+  pos_action_size: 30  # num of control_values
+  angle_action_size: 2
