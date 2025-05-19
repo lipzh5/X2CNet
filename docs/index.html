@@ -316,30 +316,67 @@
   </div>
 </section>
 
+
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Comparison with Current Approaches</h2>
+      <h2 class="title is-3">Dataset Collection </h2>
         <div class="image-container">
           <figure>
-              <img src="static/images/current_issue4_480.png" alt="project lead", class=""single-image>
+              <img src="static/images/dataset_pipeline-nips.png" alt="project lead", class="single-image", style="width: 80%">
               <figcaption>
-                <figcaption>
-                  <div class="content has-text-centered">
-                    <div class="content has-text-justified">
-                      Existing methods typically follow a recognition and imitation paradigm, operating on a limited set of emotions and failing to capture emotional nuances. For example, the robot might always display the same happy face, even if the human performer exhibits 
-                      happiness with varying intensities.
-                      In contrast, the proposed <strong>X2CNet</strong> framework does not impose restrictions on canonical emotions and directly predicts low-level control values in the robot's action space. These control values represent the movement of actuators in the robot's face, thereby encoding subtle variations in facial expressions.
-
-                    </div>
-                    
+                <div class="content has-text-centered">
+                <div class="content has-text-justified">
+                  <strong>The pipeline for dataset collection.</strong> We first curate humanoid facial expression animations
+                  covering all basic emotions and beyond. Images and their corresponding control values are then
+                  sampled at the same timestamps (e.g., if an image is sampled at t = 2.0, its control value annotation
+                  is also sampled at t = 2.0) to obtain the temporally aligned pairs
                   </div>
-                </figcaption>
- 
-                </div>
+                  </div>
               </figcaption>
           </figure>
-        </div>
+        </div> 
+
+       
+
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Control Values and Distributions</h2>
+      <div class="image-container">
+        <figure>
+            <img src="static/images/exp-ctrl.png" alt="project lead", style="width: 60%">
+            <figcaption>
+              <div class="content has-text-centered">
+              <div class="content has-text-justified">
+                <strong>An illustration of the correspondence between control values and control units.</strong>
+                In the
+control value visualization, the first 4 values control the brow movements, the next 4 control eyelid
+motions, and so on for the other units.
+                </div>
+                </div>
+            </figcaption>
+        </figure>
+      </div>
+      <div class="image-container">
+        <figure>
+            <img src="static/images/ctrl_distribution1_nips.png" alt="project lead", style="width: 80%">
+            <figcaption>
+              <div class="content has-text-centered">
+              <div class="content has-text-justified">
+                <strong>Value distributions of 30 controls.</strong>
+                 Controls for different expression-relevant units are
+indicated by different colors. 
+                </div>
+                </div>
+            </figcaption>
+        </figure>
+      </div> 
 
     </div>
     
@@ -349,54 +386,17 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Dataset Collection </h2>
-        <div class="image-container">
-          <figure>
-              <img src="static/images/dataset_pipeline8.png" alt="project lead", class="single-image", style="width: 80%">
-              <figcaption>
-                <div class="content has-text-centered">
-                <div class="content has-text-justified">
-                  <strong>The pipeline for training set collection.</strong> A. We first construct facial expression animations and record videos in the simulation environment. 
-                  B. In the annotation module, both the control values and image frames are sampled at a timestep of 0.05 seconds, which are used to construct temporally aligned pairs.
-                  </div>
-                  </div>
-              </figcaption>
-          </figure>
-        </div> 
-
-        <div class="image-container">
-          <figure>
-              <img src="static/images/testset_construction2.png" alt="project lead", style="width: 80%">
-              <figcaption>
-                <div class="content has-text-centered">
-                <div class="content has-text-justified">
-                  <strong>The pipeline for test set collection.</strong>
-                  A. We first construct pairs of robot images and corresponding control values. B. Volunteers are then invited to replicate the robot's facial expressions precisely. C. The captured human facial images subsequently annotated with the control values associated with the robot images.
-                  </div>
-                  </div>
-              </figcaption>
-          </figure>
-        </div> 
-
-    </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
       <h2 class="title is-3">Framework</h2>
         <div class="image-container">
           <figure>
-              <img src="static/images/imitation_framework7.png" alt="project lead", style="width: 60%">
+              <img src="static/images/imitation_framework-nips.png" alt="project lead", style="width: 80%">
               <figcaption>
                 <figcaption>
                   <div class="content has-text-centered">
                     <div class="content has-text-justified">
-                      An overview of <strong>Mimetician</strong>, the proposed human-to-robot motion transfer framework for realistic humanoid imitation. A. During training, we learn a mapping from the 
-                      virtual robot to the control values within the robot's action space. B. During inference, the human motion is first transferred to the virtual robot, which then passes through the learned mapping network to predict control values that encode nuanced facial, driving the physical robot using these control values to imitate human facial expressions in a realistic manner.
+                      An overview of <strong>X2CNet</strong>, the proposed imitation framework. The first module captures
+                      facial expression subtleties from humans, while the mapping network learns the correspondence
+                      between various humanoid expressions and their underlying control values using the <strong>X2C</strong> dataset.
                     </div>
                   </div>
                 </figcaption>
