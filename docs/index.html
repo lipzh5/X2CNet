@@ -236,7 +236,7 @@
       <h2 class="subtitle has-text-centered">
         <div class="content has-text-centered">
         <div class="content has-text-justified">
-        A video demonstration to showcase the realistic imitation capabilities of our propose framework <strong>Mimetician</strong>, where the <strong>emotional nuances</strong> of the human performer are capatured and transferred to the humanoid robot.
+        A video demonstration showcases the realistic imitation capabilities of our proposed framework <strong>X2CNet</strong>, where the correspondence between expression representation in image space and the robot's action space is learned using the <strong>X2C</strong> dataset. TThis framework validates the value of our dataset in advancing research on realistic humanoid facial expression imitation.
         </div>
         </div>
       </h2>
@@ -277,11 +277,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            The ability to imitate realistic facial expressions is essential for humanoid robots engaged in affective human–robot communication. However, the lack of datasets containing diverse humanoid facial expressions with proper annotations hinders progress in realistic humanoid facial expression imitation.  
-To address these challenges, we introduce <strong>X2C</strong> (Anything to Control), a dataset featuring nuanced facial expressions for realistic humanoid imitation.
-With <strong>X2C</strong>, we contribute: 1) a high-quality, high-diversity, large-scale dataset comprising 100,000 (image, control value) pairs. Each image depicts a humanoid robot displaying a diverse range of facial expressions, annotated with 30 control values representing the ground-truth expression configuration;
-2) <strong>X2CNet</strong>, a novel human-to-humanoid facial expression imitation framework that learns the correspondence between nuanced humanoid expressions and their underlying control values from <strong>X2C</strong>}. It enables facial expression imitation in the wild for different human performers, providing a baseline for the imitation task, showcasing the potential value of our dataset;
-3) real-world demonstrations on a physical humanoid robot, highlighting its capability to advance realistic humanoid facial expression imitation.
+            The ability to imitate realistic facial expressions is essential for humanoid robots engaged in affective human-robot communication. However, the lack of datasets containing diverse humanoid facial expressions with proper annotations hinders progress in realistic humanoid facial expression imitation. To address these challenges, we introduce <strong>X2C</strong> (Anything to Control), a dataset featuring nuanced facial expressions for realistic humanoid imitation. With <strong>X2C</strong>, we contribute: 1) a high-quality, high-diversity, large-scale dataset comprising 100,000 (image, control value) pairs. Each image depicts a humanoid robot displaying a diverse range of facial expressions, annotated with 30 control values representing the ground-truth expression configuration; 2) <strong>X2CNet</strong>, a novel human-to-humanoid facial expression imitation framework that learns the correspondence between nuanced humanoid expressions and their underlying control values from <strong>X2C</strong>. It enables facial expression imitation in the wild for different human performers, providing a baseline for the imitation task, showcasing the potential value of our dataset; 3) real-world demonstrations on a physical humanoid robot, highlighting its capability to advance realistic humanoid facial expression imitation. 
           </p>
         </div>
       </div>
@@ -291,6 +287,35 @@ With <strong>X2C</strong>, we contribute: 1) a high-quality, high-diversity, lar
 <!-- End paper abstract -->
 
 <!-- core images -->
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">The <strong>X2C</strong> Dataset</h2>
+        <div class="image-container">
+          <figure>
+              <img src="static/images/physical_virtual_control4.png" alt="project lead", class=""single-image>
+              <figcaption>
+                <div class="content has-text-centered">
+                <div class="content has-text-justified">
+                  <strong>Demonstration of X2C dataset examples.</strong>  Each example in the X2C dataset consists
+                  of: (1) an image depicting the virtual robot, shown in the middle; and (2) the corresponding control
+                  values, visualized at the bottom. In these visualizations, the height of each blue bar represents the
+                  magnitude of the corresponding value, while the orange dots indicate the values in the neutral state. 
+                  </div>
+                  </div>
+              </figcaption>
+          </figure>
+        </div> 
+
+         
+
+    </div>
+    </div>
+  </div>
+</section>
+
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
@@ -304,7 +329,7 @@ With <strong>X2C</strong>, we contribute: 1) a high-quality, high-diversity, lar
                     <div class="content has-text-justified">
                       Existing methods typically follow a recognition and imitation paradigm, operating on a limited set of emotions and failing to capture emotional nuances. For example, the robot might always display the same happy face, even if the human performer exhibits 
                       happiness with varying intensities.
-                      In contrast, the proposed <strong>Mimetician</strong> framework does not impose restrictions on canonical emotions and directly predicts low-level control values in the robot's action space. These control values represent the movement of actuators in the robot's face, thereby encoding subtle variations in facial expressions.
+                      In contrast, the proposed <strong>X2CNet</strong> framework does not impose restrictions on canonical emotions and directly predicts low-level control values in the robot's action space. These control values represent the movement of actuators in the robot's face, thereby encoding subtle variations in facial expressions.
 
                     </div>
                     
@@ -318,43 +343,6 @@ With <strong>X2C</strong>, we contribute: 1) a high-quality, high-diversity, lar
 
     </div>
     
-  </div>
-</section>
-
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3"><strong>X2C</strong> Rollout</h2>
-        <div class="image-container">
-          <figure>
-              <img src="static/images/physical_virtual_control4.png" alt="project lead", class=""single-image>
-              <figcaption>
-                <div class="content has-text-centered">
-                <div class="content has-text-justified">
-                    <strong>X2C training set examples demonstration.</strong> Each example in the X2C dataset consists of (1) an image depicting the <strong>virtual robot</strong>, shown in the middle, and (2) the corresponding control values, visualized at the bottom. To facilitate an understanding of the relationship between the physical and virtual robots, images of the <strong>physical robot</strong> are also included at the top.
-                    The <strong>physical robot</strong> and its <strong>virtual counterpart</strong> share the same set of controls. 
-                  </div>
-                  </div>
-              </figcaption>
-          </figure>
-        </div> 
-
-        <div class="image-container">
-          <figure>
-              <img src="static/images/testset_examples3.png" alt="project lead", style="width: 60%">
-              <figcaption>
-                <div class="content has-text-centered">
-                <div class="content has-text-justified">
-                    <strong>X2C test set examples demonstration.</strong> Each example is an image-control value pair, where the image depicting nuance facial expression of human. The control values correspond to a robotic facial expression and serve as the ground truth for the imitation task. 
-                    Note that the quantitative evaluation can be conducted on the test set even without the physical robot.
-                  </div>
-                  </div>
-              </figcaption>
-          </figure>
-        </div> 
-
-    </div>
-    </div>
   </div>
 </section>
 
