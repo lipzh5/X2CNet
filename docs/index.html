@@ -130,7 +130,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">X2C: A Benchmark Featuring 
+            <h1 class="title is-1 publication-title">X2C: A Dataset Featuring 
               <br>Nuanced Facial Expressions<br> for Realistic Humanoid Imitation</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
@@ -162,7 +162,7 @@
                     <div class="publication-links">
                          <!-- Arxiv PDF link -->
                       <span class="link-block">
-                        <a href="coming_soon!!!" target="_blank"
+                        <a href="https://arxiv.org/pdf/2505.11146" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
                         <span class="icon">
                           <i class="fas fa-file-pdf"></i>
@@ -184,7 +184,7 @@
  -->
                    <!-- Github link -->
                    <span class="link-block">
-                    <a href="https://github.com/lipzh5/Mimetician" target="_blank"
+                    <a href="https://github.com/lipzh5/X2CNet" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -207,7 +207,7 @@
 
                 <!-- ArXiv abstract Link -->
                 <span class="link-block">
-                  <a href="coming_soon!!!" target="_blank"
+                  <a href="https://arxiv.org/abs/2505.11146" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="ai ai-arxiv"></i>
@@ -277,10 +277,11 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present a new benchmark along with a novel human-to-robot motion transfer baseline that enables a humanoid robot to realistically imitate nuanced facial expressions from humans. Prior work on human facial expression imitation for humanoid robots typically operates within limited emotion categories, failing to capture the subtle emotional nuances inherent in human expressions, thereby hindering realistic imitation.
-To this end, we introduce <strong>X2C</strong> (Anything to Control), the first benchmark featuring nuanced facial expressions for realistic humanoid imitation. <strong>X2C</strong>  comprises a training set and a test set. The training set consists of 104,987 images of a virtual humanoid robot in a simulation environment, each depicting nuanced facial expressions and annotated with 30 low-level control values. The test set contains nuanced human facial expressions with the same control value annotations as in the training set.
-Equipped with this benchmark, we propose <strong>Mimetician</strong>, a novel human-to-robot motion transfer baseline for realistic imitation. In this framework, a mapping network is trained using <strong>X2C</strong> to map images of the virtual robot to control values that encode emotional nuances within the robot's action space. 
-Extensive experiments are conducted both on the test set and the physical humanoid robot, with both quantitative and qualitative evaluations. For more details, please refer to our project page.
+            The ability to imitate realistic facial expressions is essential for humanoid robots engaged in affective human–robot communication. However, the lack of datasets containing diverse humanoid facial expressions with proper annotations hinders progress in realistic humanoid facial expression imitation.  
+To address these challenges, we introduce <strong>X2C</strong> (Anything to Control), a dataset featuring nuanced facial expressions for realistic humanoid imitation.
+With <strong>X2C</strong>, we contribute: 1) a high-quality, high-diversity, large-scale dataset comprising 100,000 (image, control value) pairs. Each image depicts a humanoid robot displaying a diverse range of facial expressions, annotated with 30 control values representing the ground-truth expression configuration;
+2) <strong>X2CNet</strong>, a novel human-to-humanoid facial expression imitation framework that learns the correspondence between nuanced humanoid expressions and their underlying control values from <strong>X2C</strong>}. It enables facial expression imitation in the wild for different human performers, providing a baseline for the imitation task, showcasing the potential value of our dataset;
+3) real-world demonstrations on a physical humanoid robot, highlighting its capability to advance realistic humanoid facial expression imitation.
           </p>
         </div>
       </div>
