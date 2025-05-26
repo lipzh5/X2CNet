@@ -1,7 +1,7 @@
 # Mimetician
-An implementation of the imitation framework **Mimetician** in paper 
+An implementation of the imitation framework **X2CNet** in paper 
 
-_**X2C: A Benchmark Featuring Nuanced Facial Expressions 
+_**X2C: A Dataset Featuring Nuanced Facial Expressions 
 for Realistic Humanoid Imitation**_
 ### Setup
 
