@@ -41,6 +41,7 @@ python main.py do_eval=True train.batch_size=128 train.num_workers=16 train.save
 ## Pre-trained Models
 You can download pre-trained models here:
 
+ [Mapping Network](https://drive.google.com/file/d/1GAiBihDk-vcc-wK-GY5o-kwWobUA4g53/view?usp=sharing) trained on <strong>X2C</strong> with a batch size of 128, learning rate of 1e-3, for 100 epochs, using ResNet18 as the feature extractor.
 ## Real-world Inference Results
 ![Alt text](docs/static/images/inference_example3_160.png)
 
