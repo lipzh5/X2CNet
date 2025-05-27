@@ -1,0 +1,13 @@
+hydra-core
+tensorboard
+opencv-python
+scipy
+transformers
+matplotlib
+scikit-learn
+scikit-image
+ffmpeg-python
+pytorch-fid
+imageio
+imageio[ffmpeg]
+pandas
