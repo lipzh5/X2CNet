@@ -8,7 +8,7 @@ for Realistic Humanoid Imitation**_
 ![Alt text](docs/static/images/imitation_framework-nips.png)
 
 ## Getting Started 🏁
-### 1. Clone the code and prepare the environment 🛠️
+###  Clone the code and prepare the environment 🛠️
 
 ```bash
 git clone git@github.com:lipzh5/X2CNet.git
