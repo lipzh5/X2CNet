@@ -32,16 +32,12 @@ def train(cfg, train_loader, model, optimizer, scheduler, loss_fn, feature_match
 	start_time = time.time()
 	num_batches = len(train_loader)
 	num_epochs = cfg.train.num_epochs
-	angle_action_size = cfg.model.angle_action_size
-	func_get_delta_vals = get_delta_from_neutral_hlv if cfg.pred_hlv_ctrls else get_delta_from_neutral
 	_lambda = cfg.train.feat_matching_ratio
 	for i_batch, batch in enumerate(train_loader):
 		batch = [t.cuda(device_id) for t in batch]
 		images, animated_images, ctrl_vals = batch
 		pred_features, pos_predicts = model(images)  # [bs, action_size]
 
-		if cfg.train.pred_delta_from_neutral:
-			ctrl_vals = func_get_delta_vals(ctrl_vals)
 
 		with torch.no_grad():
 			target_features = model.feature_extractor(animated_images)
@@ -127,52 +123,14 @@ def main(cfg: DictConfig) -> None:
 	np.random.seed(cfg.seed)
 	torch.manual_seed(cfg.seed)
 	random.seed(cfg.seed)
-	pred_delta = int(cfg.train.pred_delta_from_neutral)
-	traverse_step_train = cfg.data.traverse_step_train
-	traverse_step_val = cfg.data.traverse_step_val
-	app_cj = int(cfg.data.apply_color_jitter)
-	wp = cfg.train.warm_up
-	resnet_pretrain = int(cfg.model.use_resnet_pretrain)
-	neutral_norm = 1 if cfg.data.neutral_norm_img_path else 0
-	anim_training = 1 if cfg.data.enable_animated_training else 0
-	normalize0_1 = 1 if cfg.data.normalize0_1 else 0
-	pred_hlv = 1 if cfg.pred_hlv_ctrls else 0
-	trial_name = f"uda_trial_{cfg.trial}_bs{cfg.train.batch_size}_ep{cfg.train.num_epochs}_lr{cfg.train.lr}_lossfn{cfg.train.loss_fn}_matcode{cfg.train.feat_matching_func_code}_cg{cfg.data.clear_gaze}"
-	_part = cfg.train.part_based
-	d = {'gaze': 2, 'neck': 5, 'others': 23}
-	if _part in d:
-		trial_name += f'_part{_part}'
-		cfg.model.pos_action_size = d[_part]
+	trial_name = f"uda_trial_{cfg.trial}_bs{cfg.train.batch_size}_ep{cfg.train.num_epochs}_lr{cfg.train.lr}_lossfn{cfg.train.loss_fn}_matcode{cfg.train.feat_matching_func_code}"
 
 	writer = SummaryWriter(osp.join('runs', trial_name))
 	log.info(f"***********\n TRIAL: {trial_name}\n STARTS!***********")
-	if cfg.data.enable_animated_training:
-		cfg.data.mean = [0.4708, 0.4167, 0.3200]
-		cfg.data.std = [0.1411, 0.1233, 0.1123]
-	# if cfg.data.enable_co_training:
-	# 	cfg.data.mean = []
-	# 	cfg.data.std = []
-	if cfg.pred_hlv_ctrls:
-		cfg.model.pos_action_size = 29
 
-	if cfg.train.mouth_only == 1:
-		cfg.model.pos_action_size = 14
-	elif cfg.train.mouth_only == -1:
-		cfg.model.pos_action_size = 16
-	# cfg.train.save_model_name = 'x2control_hlv.pth'
 	device_id = cfg.device_id
 	model = X2Control(cfg).cuda(device_id)
-	if cfg.train.two_stage_train == 1:  # load state dict from the 1st stage and train again
-		# load stage one pretrained path
-		state_dict = torch.load(
-			osp.join(cfg.train.save_model_path, 'trial_0_bs32_ep30_lr0.001_animtrain1/x2control.pth'),
-			map_location=torch.device(f'cuda:{device_id}'))
-		model.load_state_dict(state_dict['model'])
-	elif cfg.train.two_stage_train == 2:  # simulated + animated
-		state_dict = torch.load(
-			osp.join(cfg.train.save_model_path, 'trial_0_bs128_ep100_lr0.001_animtrain0_2stageT0/x2control.pth'),
-			map_location=torch.device(f'cuda:{device_id}'))
-
+	
 	loss_fn = nn.L1Loss() if cfg.train.loss_fn == 1 else nn.HuberLoss(delta=0.01)
 	if cfg.train.loss_fn == 3:
 		loss_fn = nn.MSELoss()
