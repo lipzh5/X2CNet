@@ -23,7 +23,7 @@ import logging
 log = logging.getLogger(__name__)
 
 
-def train(cfg, train_loader, model, optimizer, scheduler, loss_fn, feature_matching_loss_fn, epoch):
+def train(cfg, train_loader, model, optimizer, scheduler, loss_fn, epoch):
 	losses = AverageMeter()
 	model.train()
 	device_id = cfg.device_id
@@ -32,28 +32,11 @@ def train(cfg, train_loader, model, optimizer, scheduler, loss_fn, feature_match
 	start_time = time.time()
 	num_batches = len(train_loader)
 	num_epochs = cfg.train.num_epochs
-	_lambda = cfg.train.feat_matching_ratio
 	for i_batch, batch in enumerate(train_loader):
 		batch = [t.cuda(device_id) for t in batch]
-		images, animated_images, ctrl_vals = batch
+		images, ctrl_vals = batch
 		pred_features, pos_predicts = model(images)  # [bs, action_size]
-
-
-		with torch.no_grad():
-			target_features = model.feature_extractor(animated_images)
-			if model.encoder_opt == 'resnet':
-				target_features = target_features.squeeze(-1).squeeze(-1)
-			elif model.encoder_opt == 'vgg':
-				target_features = torch.flatten(target_features, 1)
-			elif model.encoder_opt == 'transformer':
-				target_features = target_features.last_hidden_state
-				# print(f'features shape 111: {features.shape}')
-				target_features = target_features.view(target_features.size(0), -1)
-		feature_matching_loss = feature_matching_loss_fn(pred_features,
-		                                                 target_features) if feature_matching_loss_fn is not None else 0
-		# if eyelid upper left/right <0 then, mask gaze
-		loss = loss_fn(pos_predicts, ctrl_vals) + _lambda * feature_matching_loss
-		# print(f'total loss: {loss}, feat mat loss: {feature_matching_loss} \n -----')
+		loss = loss_fn(pos_predicts, ctrl_vals)
 
 		losses.update(loss.item(), ctrl_vals.shape[0])
 
@@ -72,7 +55,7 @@ def train(cfg, train_loader, model, optimizer, scheduler, loss_fn, feature_match
 			log.info(
 				f'**TRAIN**|Epoch {epoch}/{num_epochs} | Batch {i_batch + 1}/{num_batches} | Time/Batch(ms) {elapsed_time * 1000.0 / cfg.train.log_interval} | Train Loss {losses.avg}')
 			start_time = time.time()
-			print(f'total loss: {loss}, feat mat loss: {feature_matching_loss} \n -----')
+			# print(f'total loss: {loss}, feat mat loss: {feature_matching_loss} \n -----')
 
 	# if epoch == cfg.train.num_epochs:
 	# 	print(f'predict: {pos_predicts[:, 0]}, \n ground truth: {ctrl_vals[:, 13]}')
@@ -80,40 +63,19 @@ def train(cfg, train_loader, model, optimizer, scheduler, loss_fn, feature_match
 	return losses.avg
 
 
-def evaluate(cfg, data_loader, model, loss_fn, feature_matching_loss_fn, epoch, test=False):
+def evaluate(cfg, data_loader, model, loss_fn):
 	losses = AverageMeter()
 	model.eval()
 	num_batches = len(data_loader)
 	num_epochs = cfg.train.num_epochs
 	device_id = cfg.device_id
-	angle_action_size = cfg.model.angle_action_size
-	func_get_delta_vals = get_delta_from_neutral_hlv if cfg.pred_hlv_ctrls else get_delta_from_neutral
-	_lambda = cfg.train.feat_matching_ratio
+	# _lambda = cfg.train.feat_matching_ratio
 	with torch.no_grad():
 		for i_batch, batch in enumerate(data_loader):
 			batch = [t.cuda(device_id) for t in batch]
-			images, animated_images, ctrl_vals, = batch
+			images, ctrl_vals, = batch
 			pred_features, pos_predicts = model(images)
-			# gt_ctrl = ctrl_vals[:, 13:27]
-			if cfg.train.pred_delta_from_neutral:
-				ctrl_vals = func_get_delta_vals(ctrl_vals)
-
-			target_features = model.feature_extractor(animated_images)
-			if model.encoder_opt == 'resnet':
-				target_features = target_features.squeeze(-1).squeeze(-1)
-			elif model.encoder_opt == 'vgg':
-				target_features = torch.flatten(target_features, 1)
-			elif model.encoder_opt == 'transformer':
-				target_features = target_features.last_hidden_state
-				# print(f'features shape 111: {features.shape}')
-				target_features = target_features.view(target_features.size(0), -1)
-			feature_matching_loss = feature_matching_loss_fn(pred_features,
-			                                                 target_features) if feature_matching_loss_fn is not None else 0
-			loss = loss_fn(pos_predicts, ctrl_vals) + _lambda * feature_matching_loss
-			# print(f'feat mat loss: {feature_matching_loss}, total loss: {loss} ')
-			# if epoch == cfg.train.num_epochs:
-			# 	print(f'predict: {pos_predicts[:, 0]}, \n ground truth: {ctrl_vals[:, 0]}')
-			# loss = loss_fn(pos_predicts , ctrl_vals[:, :-angle_action_size]) + loss_fn(angle_predicts, ctrl_vals[:, -angle_action_size:])
+			loss = loss_fn(pos_predicts, ctrl_vals) 
 			losses.update(loss.item(), ctrl_vals.shape[0])
 	return losses.avg
 
@@ -123,7 +85,7 @@ def main(cfg: DictConfig) -> None:
 	np.random.seed(cfg.seed)
 	torch.manual_seed(cfg.seed)
 	random.seed(cfg.seed)
-	trial_name = f"uda_trial_{cfg.trial}_bs{cfg.train.batch_size}_ep{cfg.train.num_epochs}_lr{cfg.train.lr}_lossfn{cfg.train.loss_fn}_matcode{cfg.train.feat_matching_func_code}"
+	trial_name = f"trial_{cfg.trial}_bs{cfg.train.batch_size}_ep{cfg.train.num_epochs}_lr{cfg.train.lr}_lossfn{cfg.train.loss_fn}_matcode{cfg.train.feat_matching_func_code}"
 
 	writer = SummaryWriter(osp.join('runs', trial_name))
 	log.info(f"***********\n TRIAL: {trial_name}\n STARTS!***********")
@@ -135,10 +97,6 @@ def main(cfg: DictConfig) -> None:
 	if cfg.train.loss_fn == 3:
 		loss_fn = nn.MSELoss()
 	loss_fn = loss_fn.cuda(device_id)
-	feature_matching_loss_fn = get_feature_matching_loss_fn(cfg.train.feat_matching_func_code)
-	if feature_matching_loss_fn is not None:
-		feature_matching_loss_fn = feature_matching_loss_fn.cuda(device_id)
-	# feature_matching_loss_fn = FeatureMatchingLoss().cuda(device_id)
 
 	val_set = ICtrlDataset(cfg, split_type='val')
 	val_loader = DataLoader(val_set, shuffle=False, batch_size=cfg.train.batch_size * 2,
@@ -150,7 +108,7 @@ def main(cfg: DictConfig) -> None:
 		model.load_state_dict(state_dict['model'])
 		model.eval()
 		model.requires_grad_(False)
-		val_loss = evaluate(cfg, val_loader, model, loss_fn, feature_matching_loss_fn, num_epochs, test=False)
+		val_loss = evaluate(cfg, val_loader, model, loss_fn)
 		print(f'validation loss is: {val_loss} \n **************')
 		return
 
@@ -168,8 +126,8 @@ def main(cfg: DictConfig) -> None:
 		num_training_steps=total_training_steps)
 
 	for epoch in range(1, num_epochs + 1):
-		train_loss = train(cfg, train_loader, model, optimizer, scheduler, loss_fn, feature_matching_loss_fn, epoch)
-		val_loss = evaluate(cfg, val_loader, model, loss_fn, feature_matching_loss_fn, epoch, test=False)
+		train_loss = train(cfg, train_loader, model, optimizer, scheduler, loss_fn, epoch)
+		val_loss = evaluate(cfg, val_loader, model, loss_fn)
 		log.info(f'======\n Epoch: {epoch}|Train Loss: {train_loss}| Val Loss: {val_loss} \n ======')
 		# writer.add_scalars('Loss', {'train': train_loss, 'val': val_loss}, epoch)
 

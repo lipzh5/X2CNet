@@ -74,7 +74,7 @@ class ICtrlDataset(Dataset):
 		self.split_type = split_type
 		self.image_processor = ImageProcessor(cfg.data, split_type)
 
-		filename = f'{split_type}_split_cg.pkl'
+		filename = f'{split_type}_split.pkl'
 		with open(osp.join(cfg.data.ictrl_data_path, filename), 'rb') as file:
 			data = pickle.load(file)
 
@@ -86,10 +86,5 @@ class ICtrlDataset(Dataset):
 
 	def __getitem__(self, index):
 		img_path = self.img_paths[index]
-		img_path = osp.join('../emotionimitation', img_path)
-		# penny NOTE: load animated images for feature matching
-		animated_img_path = img_path.replace('cropped_frames_fine/',
-		                                     'cropped_frames_fine_animated_from_vid/ameca_neutral--')
-
 		ctrl_vals = self.ctrl_values[index]
-		return self.image_processor(img_path), self.image_processor(animated_img_path), ctrl_vals
+		return self.image_processor(img_path), ctrl_vals

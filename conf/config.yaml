@@ -6,7 +6,7 @@ do_eval: False
 
 data:
 #  clear_gaze: True
-  ictrl_data_path: ../emotionimitation/datasets
+  ictrl_data_path: ../x2cdataset # /path/to/dataset/folder
   mean: [0.4885, 0.4294, 0.3233]
   std: [0.1382, 0.1195, 0.1087]
   apply_color_jitter: True
