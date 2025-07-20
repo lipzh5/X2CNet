@@ -44,7 +44,7 @@ python misc/dataset_preprocessing.py  --x2c /path/to/X2C
 
 ### ⚙️ Configuration Reminder
 
-Update the ictrl_data_path field in your config.yaml to point to your local copy of the X2C dataset.
+Update the **ictrl_data_path** field in your config.yaml to point to your local copy of the X2C dataset.
 
 ## 🏋️ Training
 ```train
