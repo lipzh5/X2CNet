@@ -7,8 +7,8 @@ do_eval: False
 data:
 #  clear_gaze: True
   ictrl_data_path: ../x2cdataset # /path/to/dataset/folder
-  mean: [0.4885, 0.4294, 0.3233]
-  std: [0.1382, 0.1195, 0.1087]
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
   apply_color_jitter: True
   neutral_norm_img_path: ''
   transform:

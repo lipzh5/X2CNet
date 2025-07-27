@@ -7,6 +7,10 @@ for Realistic Humanoid Imitation**_
 
 ![Alt text](docs/static/images/imitation_framework-nips.png)
 
+## News
+1. inference pipeline
+2. demos of Ameca with new look
+
 ## 🚀 Getting Started 
 🔧 **Clone the Code and Set Up the Environment**
 
@@ -45,12 +49,12 @@ python misc/dataset_preprocessing.py  --x2c /path/to/X2C
 
 Update the **ictrl_data_path** field in your config.yaml to point to your local copy of the X2C dataset.
 
-## Training
+## Mapping Network Training
 ```train
 python main.py train.batch_size=128 train.num_workers=16 train.num_epochs=100 train.lr=1e-3
 ```
 
-## Evaluation
+## Mapping Network Evaluation
 ```eval
 python main.py do_eval=True train.batch_size=128 train.num_workers=16 train.save_model_path=path/to/save_folder
 ```
@@ -60,8 +64,23 @@ You can download pre-trained models here:
 
  [🔗Mapping Network](https://drive.google.com/file/d/1GAiBihDk-vcc-wK-GY5o-kwWobUA4g53/view?usp=sharing) trained on <strong>X2C</strong> with a batch size of 128, learning rate of 1e-3, for 100 epochs, using ResNet18 as the feature extractor.
 
+## 🚀 X2CNet Inference Pipeline
+
+Download the required checkpoints for the **motion transfer module** from [LivePortrait](https://github.com/KwaiVGI/LivePortrait).
+
+Update the paths in [`liveportrait_configs/inference_config.py`](liveportrait_configs/inference_config.py) accordingly.
+
+To generate control values for on-robot execution, run:
+
+```bash
+python x2cnet_inference.py --driving /path/to/driving_video
+```
+
+
 ## Real-world Inference Results
 ![Alt text](docs/static/images/inference_example3_160.png)
+Our dataset and imitation pipeline are applicable to multiple robots with different facial appearances, requiring only minimal effort to project the control values onto the target platform.
+![Alt text](docs/static/images/inference_example2.png)
 
 ## 🤝 Contributing
 We are actively updating and improving this repository. If you find any bugs or have suggestions, welcome to raise issues or submit pull requests (PR) 💖.

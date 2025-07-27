@@ -61,4 +61,4 @@ class X2Control(nn.Module):
 	def forward(self, x):
 		features = self.extract_feature(x)
 		pos_pred_vals = self.pos_pred_head(features)
-		return features, pos_pred_vals
+		return pos_pred_vals

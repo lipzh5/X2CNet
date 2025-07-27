@@ -11,3 +11,8 @@ pytorch-fid
 imageio
 imageio[ffmpeg]
 pandas
+omegaconf
+rich
+tyro
+onnxruntime-gpu
+onnx
