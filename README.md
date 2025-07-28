@@ -7,9 +7,9 @@ for Realistic Humanoid Imitation**_
 
 ![Alt text](docs/static/images/imitation_framework-nips.png)
 
-## News
-1. inference pipeline
-2. demos of Ameca with new look
+## 📰 News
+1. Inference pipeline released
+2. Demonstrations featuring multiple humanoid robots
 
 ## 🚀 Getting Started 
 🔧 **Clone the Code and Set Up the Environment**
