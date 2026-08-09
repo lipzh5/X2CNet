@@ -22,12 +22,15 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv-2505.11146-b31b1b.svg)](https://arxiv.org/abs/2505.11146)
 [![PR](https://img.shields.io/badge/PR-Accepted-purple.svg)]()
-[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
-[![Framework](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C.svg)](https://pytorch.org/)
+[![Project Page](https://img.shields.io/badge/Project-Page-green.svg)](https://lipzh5.github.io/X2CNet/)
+[![Cite](https://img.shields.io/badge/Cite-BibTeX-1f425f.svg)](#-citation)
+<!-- [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
+[![Framework](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C.svg)](https://pytorch.org/) -->
 
 <br>
 
-**X2C is a large-scale benchmark and high-fidelity dataset for nuanced humanoid facial expression imitation, accompanied by X2CNet, a baseline methodology providing scalable inference pipelines and reference mapping networks for diverse robotic platforms.**
+
+**X2C is a large-scale benchmark and high-fidelity dataset for nuanced humanoid facial expression imitation. We also provide **X2CNet**, a baseline framework featuring scalable inference pipelines and reference mapping networks for diverse robotic platforms.**
 
 </div>
 
