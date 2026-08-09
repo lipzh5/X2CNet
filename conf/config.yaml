@@ -36,14 +36,14 @@ train:
   gradient_clip_value: 1
   log_interval: 100
   pred_delta_from_neutral: False
-  save_model_path: ../emotionimitation/saved_models
+  save_model_path: saved_models
   save_model_name: x2control.pth # runs3/trial_3_seed1111_bs32_ep100_lr0.005_neutnorm0_rnpretrain0_lossfn1_wp0.02_appcj1_preddelta0_step1-1/x2control.pth
 
 eval:
   sep_parts: False
   normalize: True
   metric: l1
-  image_path: assets/vid2frames/cropped_frames_fine/Chat_G2_Surprise_Mod_3_Penny_10.15/frame_0029.jpg # assets/images/tests/test2.png
+  image_path: '' 
 
 model:
   encoder_opt: 'resnet'  # 50

@@ -130,8 +130,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">X2C: A Dataset Featuring 
-              <br>Nuanced Facial Expressions<br> for Realistic Humanoid Imitation</h1>
+            <h1 class="title is-1 publication-title">X2C: A Large-Scale Benchmark for Nuanced Humanoid Facial Expression Imitation</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
@@ -236,8 +235,9 @@
       <h2 class="subtitle has-text-centered">
         <div class="content has-text-centered">
         <div class="content has-text-justified">
-        A video demonstration showcases the realistic imitation capabilities of our proposed framework <strong>X2CNet</strong>, where the correspondence between expression representation in image space and the robot's action space is learned using the <strong>X2C</strong> dataset. TThis framework validates the value of our dataset in advancing research on realistic humanoid facial expression imitation.
-        Notably, our dataset and imitation framework are applicable to <strong>multiple</strong> humanoid robots with different facial appearances.
+        Demonstration of <strong>X2CNet</strong>, a framework enabling realistic imitation of nuanced facial dynamics. 
+        Unlike traditional methods that rely on sparse landmarks, our approach leverages the <strong>X2C</strong> dataset to learn a direct mapping from visual cues to continuous mechanical control values.
+        The framework demonstrates robust <strong>cross-embodiment generalization</strong>, applicable to multiple humanoid robots with different facial appearances and actuation schemes.
         </div>
         </div>
       </h2>
@@ -252,29 +252,33 @@
     <div class="container is-max-desktop">
         <div class="image-container">
           <figure>
-              <img src="static/images/inference_example3_160.png" alt="distraction", class=""single-image>
+              <img src="static/images/inference_examples_robot_v1.png" alt="Qualitative Results" class="single-image">
               <figcaption> 
                 <div class="content has-text-centered">
                 <div class="content has-text-justified">
-                <strong>Examples of realistic humanoid imitation.</strong> Different individuals express a wide range of facial expressions, with nuances reflected in features such as frown, gaze direction, eye openness, nose wrinkles, mouth openness, and so on. These nuanced human facial expressions extend beyond canonical emotions and can be regarded as either blends of different canonical emotions or as a single emotion with varying intensities. The humanoid robot, Ameca, mimics every detail, resulting in a realistic imitation.
-                Notably, our dataset and imitation framework are applicable to <strong>multiple</strong> robots with different facial appearances.
+                <strong>Qualitative Results on Physical Robot.</strong> The system demonstrates robust cross-subject generalization, accurately transferring diverse facial configurations—including gaze shifts, eye closure, and asymmetric mouth movements—from human inputs to the Ameca humanoid robot. The results highlight the ability to capture fine-grained dynamics often lost by landmark-based methods.
               </div>
               </div>
               </figcaption>
           </figure>
-          
         </div>
 
         <div class="image-container">
           <figure>
-              <img src="static/images/inference_example2.png" alt="distraction", class=""single-image>
+              <img src="static/images/inference_example2_new.png" alt="Cross-Embodiment" class="single-image">
+              <figcaption>
+                  <div class="content has-text-centered">
+                  <div class="content has-text-justified">
+                   <strong>Cross-Embodiment Generalization.</strong> Demonstration of the framework's adaptability. The motion transfer module standardizes diverse human inputs, allowing the control policy to drive different humanoid embodiments effectively despite variations in facial geometry and appearance.
+                  </div>
+                  </div>
+              </figcaption>
           </figure>
-          
         </div>
     </div>
-    
   </div>
 </section>
+
 
 
 <!-- Paper abstract -->
@@ -285,7 +289,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            The ability to imitate realistic facial expressions is essential for humanoid robots engaged in affective human-robot communication. However, the lack of datasets containing diverse humanoid facial expressions with proper annotations hinders progress in realistic humanoid facial expression imitation. To address these challenges, we introduce <strong>X2C</strong> (Anything to Control), a dataset featuring nuanced facial expressions for realistic humanoid imitation. With <strong>X2C</strong>, we contribute: 1) a high-quality, high-diversity, large-scale dataset comprising 100,000 (image, control value) pairs. Each image depicts a humanoid robot displaying a diverse range of facial expressions, annotated with 30 control values representing the ground-truth expression configuration; 2) <strong>X2CNet</strong>, a novel human-to-humanoid facial expression imitation framework that learns the correspondence between nuanced humanoid expressions and their underlying control values from <strong>X2C</strong>. It enables facial expression imitation in the wild for different human performers, providing a baseline for the imitation task, showcasing the potential value of our dataset; 3) real-world demonstrations on a physical humanoid robot, highlighting its capability to advance realistic humanoid facial expression imitation. 
+            Fine-grained facial expression transfer from humans to humanoid agents presents a unique pattern recognition challenge due to the significant domain gap between biological facial dynamics and mechanical control spaces. While visual synthesis of talking heads has advanced rapidly, mapping high-dimensional visual cues to precise, physically constrained actuation signals remains an open problem, primarily due to the lack of large-scale paired data. To bridge this gap, we introduce <strong>X2C</strong> (Expression to Control), a comprehensive benchmark dataset comprising <strong>100,000 &lt;image, control value&gt; pairs</strong>. Unlike existing resources, X2C features nuanced, physically grounded expressions annotated with 30 continuous control parameters, establishing a high-fidelity standard for this task. Building on this resource, we propose <strong>X2CNet</strong>, a two-stage deep learning framework that explicitly decouples visual motion features from mechanical control regression to model the correspondence between human perceptual cues and humanoid actuation. Extensive experiments, including quantitative benchmarking and real-world physical validation, demonstrate that our approach achieves superior cross-domain consistency and enables robust, in-the-wild expression imitation.
           </p>
         </div>
       </div>
@@ -300,53 +304,19 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">The <strong>X2C</strong> Dataset</h2>
+      <h2 class="title is-3">The <strong>X2C</strong> Benchmark</h2>
         <div class="image-container">
           <figure>
-              <img src="static/images/physical_virtual_control4.png" alt="project lead", class=""single-image>
+              <img src="static/images/physical_virtual_control4.png" alt="Dataset Samples" class="single-image">
               <figcaption>
                 <div class="content has-text-centered">
                 <div class="content has-text-justified">
-                  <strong>Demonstration of X2C dataset examples.</strong>  Each example in the X2C dataset consists
-                  of: (1) an image depicting the virtual robot, shown in the middle; and (2) the corresponding control
-                  values, visualized at the bottom. In these visualizations, the height of each blue bar represents the
-                  magnitude of the corresponding value, while the orange dots indicate the values in the neutral state. 
+                  <strong>Representative samples from the X2C dataset.</strong> Each sample consists of: (1) a virtual robot rendered in a high-fidelity simulation environment (middle), and (2) the corresponding ground-truth control vector (bottom). In the visualization, blue bars represent the active control magnitude, while orange dots indicate the neutral resting state. The dataset covers complex, asymmetric expressions beyond basic emotion categories.
                   </div>
                   </div>
               </figcaption>
           </figure>
         </div> 
-
-         
-
-    </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Dataset Collection </h2>
-        <div class="image-container">
-          <figure>
-              <img src="static/images/dataset_pipeline-nips.png" alt="project lead", class="single-image", style="width: 80%">
-              <figcaption>
-                <div class="content has-text-centered">
-                <div class="content has-text-justified">
-                  <strong>The pipeline for dataset collection.</strong> We first curate humanoid facial expression animations
-                  covering all basic emotions and beyond. Images and their corresponding control values are then
-                  sampled at the same timestamps (e.g., if an image is sampled at t = 2.0, its control value annotation
-                  is also sampled at t = 2.0) to obtain the temporally aligned pairs
-                  </div>
-                  </div>
-              </figcaption>
-          </figure>
-        </div> 
-
-       
-
     </div>
     </div>
   </div>
@@ -355,67 +325,80 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Control Values and Distributions</h2>
+      <h2 class="title is-3">Data Collection Pipeline</h2>
+        <div class="image-container">
+          <figure>
+              <img src="static/images/dataset_pipeline.png" alt="Pipeline" class="single-image" style="width: 80%">
+              <figcaption>
+                <div class="content has-text-centered">
+                <div class="content has-text-justified">
+                  <strong>Pipeline for dataset collection.</strong> We curate humanoid facial expression animations covering a wide spectrum of emotional dynamics. To ensure precise alignment, we analytically sample the ground-truth control values from the animation curves at the exact timestamps of the rendered video frames, eliminating temporal drift and sensor noise.
+                  </div>
+                  </div>
+              </figcaption>
+          </figure>
+        </div> 
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Control Space Analysis</h2>
+      
+      <h3 class="title is-4">1. Semantic Grouping</h3>
       <div class="image-container">
         <figure>
-            <img src="static/images/exp-ctrl.png" alt="project lead", style="width: 60%">
+            <img src="static/images/exp-ctrl.png" alt="Control Mapping" class="single-image" style="width: 55%">
             <figcaption>
               <div class="content has-text-centered">
-              <div class="content has-text-justified">
-                <strong>An illustration of the correspondence between control values and control units.</strong>
-                In the
-control value visualization, the first 4 values control the brow movements, the next 4 control eyelid
-motions, and so on for the other units.
+                <div class="content has-text-justified">
+                  <strong>Anatomical Organization.</strong> The 30-dimensional control vector is organized by anatomical region: Brows (4), Eyelids & Gaze (6), Nose (1), Mouth (14), and Head & Neck (5).
                 </div>
-                </div>
+              </div>
             </figcaption>
         </figure>
       </div>
+      
+      <br>
+
+      <h3 class="title is-4">2. Statistical Distribution</h3>
       <div class="image-container">
         <figure>
-            <img src="static/images/ctrl_distribution1_nips.png" alt="project lead", style="width: 80%">
+            <img src="static/images/ctrl_distribution1.png" alt="Control Distribution" class="single-image" style="width: 70%">
             <figcaption>
               <div class="content has-text-centered">
-              <div class="content has-text-justified">
-                <strong>Value distributions of 30 controls.</strong>
-                 Controls for different expression-relevant units are
-indicated by different colors. 
+                <div class="content has-text-justified">
+                  <strong>Value Distributions.</strong> Violin plots showing the statistical distribution of all 30 control channels across the 100,000 samples. The high variance in expressive regions (e.g., Mouth and Brows) confirms that the dataset explores the full dynamic range of the hardware rather than clustering around the neutral state.
                 </div>
-                </div>
+              </div>
             </figcaption>
         </figure>
-      </div> 
+      </div>
 
     </div>
-    
   </div>
 </section>
 
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Framework</h2>
+      <h2 class="title is-3">The X2CNet Framework</h2>
         <div class="image-container">
           <figure>
-              <img src="static/images/imitation_framework-nips.png" alt="project lead", style="width: 80%">
+              <img src="static/images/imitation_framework.png" alt="X2CNet Architecture" class="single-image" style="width: 90%">
               <figcaption>
-                <figcaption>
                   <div class="content has-text-centered">
                     <div class="content has-text-justified">
-                      An overview of <strong>X2CNet</strong>, the proposed imitation framework. The first module captures
-                      facial expression subtleties from humans, while the mapping network learns the correspondence
-                      between various humanoid expressions and their underlying control values using the <strong>X2C</strong> dataset.
+                      <strong>Overview of X2CNet.</strong> The framework consists of two stages: (1) A <strong>Motion Transfer Module</strong> that warps a source robot image to match the driving human expression dynamics, and (2) A <strong>Control Mapping Network</strong> that regresses continuous actuation values from the synthesized humanoid facial expression. This decoupled design ensures that the control regressor operates on a consistent visual domain.
                     </div>
                   </div>
-                </figcaption>
- 
-                </div>
               </figcaption>
           </figure>
         </div>
-
     </div>
-    
   </div>
 </section>
 

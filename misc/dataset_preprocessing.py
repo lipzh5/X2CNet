@@ -1,5 +1,4 @@
 # -*- coding:utf-8 -*-
-# @Author: Peizhen Li 
 # @Desc: generate train/val splits based on metadata
 import os
 import os.path as osp
@@ -9,7 +8,6 @@ import random
 import numpy as np
 import argparse
 
-# DATESET_DIR = '/home/penny/pycharmprojects/X2C' # path to the X2C dataset
 
 import json
 

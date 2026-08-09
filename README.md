@@ -1,11 +1,10 @@
-# X2CNet 🤖 
-This repository is the official implementation of the imitation framework **X2CNet** in paper 
+# X2C: A Large-Scale Benchmark for Nuanced Humanoid Facial Expression Imitation 🤖
 
-_**X2C: A Dataset Featuring Nuanced Facial Expressions 
-for Realistic Humanoid Imitation**_ 
+This repository is the official implementation of **X2CNet**, the framework proposed in the paper:
 
+**X2C: A Large-Scale Benchmark for Nuanced Humanoid Facial Expression Imitation**
 
-![Alt text](docs/static/images/imitation_framework-nips.png)
+![Alt text](docs/static/images/imitation_framework.png)
 
 ## 📰 News
 1. Inference pipeline released

@@ -14,14 +14,10 @@ from .base_config import PrintableConfig, make_abs_path
 class ArgumentConfig(PrintableConfig):
     ########## input arguments ##########
     source: Annotated[str, tyro.conf.arg(aliases=["-s"])] = make_abs_path('../datasets/physical_source.jpg')
-    # source: Annotated[str, tyro.conf.arg(aliases=["-s"])] = make_abs_path('../../assets/examples/source/ameca_neutral.jpg')  # path to the source portrait (human/animal) or video (human)
-    # source: Annotated[str, tyro.conf.arg(aliases=["-s"])] = make_abs_path('../../assets/examples/source/ameca_neutral.jpg')
-    # driving:  Annotated[str, tyro.conf.arg(aliases=["-d"])] = make_abs_path('../../../humanoidexpgen/assets/ameca_system_anims_1.mov')
-    # driving:  Annotated[str, tyro.conf.arg(aliases=["-d"])] = make_abs_path('../../../emotionimitation/assets/ablations/feat_match_no/12FPS/xu2_12fps.mp4')
-    driving:  Annotated[str, tyro.conf.arg(aliases=["-d"])] = make_abs_path('../../liveportrait/assets/examples/driving2/12FPS/penny2.mp4')  # path to driving video or template (.pkl format)
-    # driving:  Annotated[str, tyro.conf.arg(aliases=["-d"])] = make_abs_path('../../assets/examples/driving/VAmecaWrinkle.png')
-    # output_dir: Annotated[str, tyro.conf.arg(aliases=["-o"])] = make_abs_path('../../../emotionimitation/assets/vid2frames/animated_videos')
-    output_dir: Annotated[str, tyro.conf.arg(aliases=["-o"])] = make_abs_path('../../liveportrait/animations2')
+    
+    driving:  Annotated[str, tyro.conf.arg(aliases=["-d"])] = make_abs_path('driving_video.mp4')  # 
+
+    output_dir: Annotated[str, tyro.conf.arg(aliases=["-o"])] = make_abs_path('')
     # 'animations/'  # directory to save output video
     ########## NOTE: additional arguments added by Penny ##########
     prepend_neutral_driving: bool = False  # whether to prepend the first neutral frame

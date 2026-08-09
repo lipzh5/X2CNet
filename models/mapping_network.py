@@ -1,5 +1,4 @@
 # -*- coding:utf-8 -*-
-# @Author: Peizhen Li
 # @Desc: pose regression network -- from image (and possibly language instruction) to control values
 # import torchvision
 from transformers import AutoFeatureExtractor, AutoModelForImageClassification
