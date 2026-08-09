@@ -29,8 +29,7 @@
 
 <br>
 
-
-**X2C is a large-scale benchmark and high-fidelity dataset for nuanced humanoid facial expression imitation. We also provide **X2CNet**, a baseline framework featuring scalable inference pipelines and reference mapping networks for diverse robotic platforms.**
+**X2C** is a large-scale high-fidelity benchmark for nuanced humanoid facial expression imitation. We also provide **X2CNet**, a baseline framework featuring scalable inference pipelines and reference mapping networks for diverse robotic platforms.
 
 </div>
 
