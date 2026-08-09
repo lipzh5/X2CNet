@@ -1,8 +1,37 @@
-# X2C: A Large-Scale Benchmark for Nuanced Humanoid Facial Expression Imitation 🤖
+<div align="center">
 
-This repository is the official implementation of **X2CNet**, the framework proposed in the paper:
+<h1>X2C: A Large-Scale Benchmark for Nuanced Humanoid Facial Expression Imitation 🤖</h1>
 
-**X2C: A Large-Scale Benchmark for Nuanced Humanoid Facial Expression Imitation**
+<div>
+    <a href="#" target="_blank">Peizhen Li</a><sup>1</sup>&emsp;
+    <a href="#" target="_blank">Longbing Cao</a><sup>1</sup>&emsp;
+    <a href="#" target="_blank">Xiao-Ming Wu</a><sup>2</sup>&emsp;
+    <a href="#" target="_blank">Runze Yang</a><sup>1</sup>&emsp;
+    <a href="#" target="_blank">Xiaohan Yu</a><sup>1</sup>
+</div>
+<br>
+<div>
+    <sup>1</sup>Macquarie University&emsp;
+    <sup>2</sup>Nanyang Technological University
+</div>
+<br>
+<div>
+    <strong>Accepted by Pattern Recognition</strong>
+</div>
+<br>
+
+[![arXiv](https://img.shields.io/badge/arXiv-2505.11146-b31b1b.svg)](https://arxiv.org/abs/2505.11146)
+[![PR](https://img.shields.io/badge/PR-Accepted-purple.svg)]()
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
+[![Framework](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C.svg)](https://pytorch.org/)
+
+<br>
+
+**X2C is a large-scale benchmark and high-fidelity dataset for nuanced humanoid facial expression imitation, accompanied by X2CNet, a baseline methodology providing scalable inference pipelines and reference mapping networks for diverse robotic platforms.**
+
+</div>
+
+---
 
 ![Alt text](docs/static/images/imitation_framework.png)
 
@@ -88,7 +117,7 @@ We are actively updating and improving this repository. If you find any bugs or 
 ## 💖 Citation 
 If you find <strong>X2C</strong> or <strong>X2CNet</strong> useful for your research, welcome to 🌟 this repo and cite our work using the following BibTeX:
 ```bibtex
-@article{li2025x2c, title={X2C: A Dataset Featuring Nuanced Facial Expressions for Realistic Humanoid Imitation}, 
+@article{li2025x2c, title={X2C: A Large-Scale Benchmark for Nuanced Humanoid Facial Expression Imitation}, 
 author={Li, Peizhen and Cao, Longbing and Wu, Xiao-Ming and Yang, Runze and Yu, Xiaohan}, journal={arXiv preprint arXiv:2505.11146}, 
 year={2025} }
 ```
